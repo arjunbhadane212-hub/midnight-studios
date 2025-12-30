@@ -19,13 +19,13 @@ const TeamMemberModal = ({ member, open, onClose }: TeamMemberModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="glass-card-glow border-primary/30 max-w-lg">
+      <DialogContent className="bg-card border border-border max-w-lg">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-foreground">{member.role}</DialogTitle>
         </DialogHeader>
         
         <div className="flex flex-col items-center gap-6 py-4">
-          <div className="w-28 h-28 rounded-full bg-secondary/50 border-2 border-primary/30 flex items-center justify-center glow-button">
+          <div className="w-28 h-28 rounded-full bg-secondary border border-border flex items-center justify-center">
             <User className="w-14 h-14 text-primary" />
           </div>
           

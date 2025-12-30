@@ -50,13 +50,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        glow: {
-          primary: "hsl(var(--glow-primary))",
-          secondary: "hsl(var(--glow-secondary))",
-        },
-        glass: {
-          bg: "hsl(var(--glass-bg))",
-          border: "hsl(var(--glass-border))",
+        stealth: {
+          blue: "hsl(var(--stealth-blue))",
+          "blue-hover": "hsl(var(--stealth-blue-hover))",
+          border: "hsl(var(--stealth-border))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
