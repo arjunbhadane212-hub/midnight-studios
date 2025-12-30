@@ -18,6 +18,7 @@ const buttonVariants = cva(
         glow: "bg-primary text-primary-foreground glow-button hover:bg-primary/90",
         glowOutline: "border border-primary/50 bg-transparent text-primary glow-button hover:bg-primary/10 hover:border-primary",
         team: "glass-card border-primary/30 text-foreground hover:border-primary/60 hover:bg-primary/10 transition-all duration-300",
+        stealth: "bg-card border border-border text-foreground hover:border-primary hover:-translate-y-2.5 transition-all duration-300 ease-in-out",
       },
       size: {
         default: "h-10 px-4 py-2",
