@@ -94,7 +94,7 @@ const Index = () => {
             <Button
               variant="stealth"
               size="lg"
-              onClick={() => scrollToSection('ui-design')}
+              onClick={() => scrollToSection('ui-section')}
             >
               <Palette className="w-4 h-4 mr-2" />
               UI Design
@@ -102,7 +102,7 @@ const Index = () => {
             <Button
               variant="stealth"
               size="lg"
-              onClick={() => scrollToSection('scripting')}
+              onClick={() => scrollToSection('scripting-section')}
             >
               <Code className="w-4 h-4 mr-2" />
               Scripting
@@ -110,7 +110,7 @@ const Index = () => {
             <Button
               variant="stealth"
               size="lg"
-              onClick={() => scrollToSection('building')}
+              onClick={() => scrollToSection('building-section')}
             >
               <Box className="w-4 h-4 mr-2" />
               Building
@@ -128,6 +128,59 @@ const Index = () => {
             <StealthCard className="p-8 animate-fade-in-up animation-delay-600" hover={false}>
               <AnimatedCounter end={5} suffix="K+" label="Members" />
             </StealthCard>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Do Section */}
+      <section id="what-we-do" className="relative z-10 py-24">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-4">
+            What We Do
+          </h2>
+          <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
+            We specialize in three core disciplines that bring Roblox experiences to life.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Scripting */}
+            <div id="scripting-section" className="scroll-mt-24">
+              <StealthCard className="p-8 h-full">
+                <div className="flex flex-col items-center text-center">
+                  <Code className="w-12 h-12 text-primary mb-6" />
+                  <h3 className="text-xl font-bold text-foreground mb-4">Scripting</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Performance-optimized code and scalable game systems. From complex gameplay mechanics to server-side architecture, we build robust foundations.
+                  </p>
+                </div>
+              </StealthCard>
+            </div>
+
+            {/* Building */}
+            <div id="building-section" className="scroll-mt-24">
+              <StealthCard className="p-8 h-full">
+                <div className="flex flex-col items-center text-center">
+                  <Box className="w-12 h-12 text-primary mb-6" />
+                  <h3 className="text-xl font-bold text-foreground mb-4">Building</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Stunning 3D environments and assets with low-poly optimization. Games run smoothly across all devices without sacrificing visual quality.
+                  </p>
+                </div>
+              </StealthCard>
+            </div>
+
+            {/* UI Design */}
+            <div id="ui-section" className="scroll-mt-24">
+              <StealthCard className="p-8 h-full">
+                <div className="flex flex-col items-center text-center">
+                  <Palette className="w-12 h-12 text-primary mb-6" />
+                  <h3 className="text-xl font-bold text-foreground mb-4">UI Design</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Intuitive and visually stunning user interfaces. Focused on accessibility, responsiveness, and creating memorable player experiences.
+                  </p>
+                </div>
+              </StealthCard>
+            </div>
           </div>
         </div>
       </section>
