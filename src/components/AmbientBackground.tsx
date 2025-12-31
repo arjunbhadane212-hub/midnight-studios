@@ -1,8 +1,65 @@
+import { useEffect, useState } from 'react';
+
+interface Star {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  twinkleDelay: number;
+  driftX: number;
+  driftY: number;
+}
+
 const AmbientBackground = () => {
+  const [stars, setStars] = useState<Star[]>([]);
+
+  useEffect(() => {
+    // Generate random stars
+    const generatedStars: Star[] = [];
+    const starCount = 80;
+    
+    for (let i = 0; i < starCount; i++) {
+      generatedStars.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 1 + 1, // 1-2px
+        opacity: Math.random() * 0.1 + 0.05, // 5-15% opacity
+        twinkleDelay: Math.random() * 8,
+        driftX: (Math.random() - 0.5) * 20,
+        driftY: (Math.random() - 0.5) * 10,
+      });
+    }
+    setStars(generatedStars);
+  }, []);
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
       {/* Base gradient */}
       <div className="absolute inset-0 bg-background" />
+      
+      {/* Starfield layer */}
+      <div className="absolute inset-0">
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="absolute rounded-full"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              backgroundColor: '#93C5FD',
+              opacity: star.opacity,
+              animation: `twinkle ${6 + star.twinkleDelay}s ease-in-out infinite, drift ${40 + star.twinkleDelay * 5}s ease-in-out infinite`,
+              animationDelay: `${star.twinkleDelay}s`,
+              ['--drift-x' as string]: `${star.driftX}px`,
+              ['--drift-y' as string]: `${star.driftY}px`,
+            }}
+          />
+        ))}
+      </div>
       
       {/* Ambient blue mist layers */}
       <svg

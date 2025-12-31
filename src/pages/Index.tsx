@@ -45,7 +45,7 @@ const Index = () => {
       {/* Hero Section */}
       <section id="home" className="relative z-10 min-h-screen flex items-center justify-center pt-20">
         <div className="container mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 animate-fade-in-up">
+          <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 animate-fade-in-up floating-title">
             Rogue Origins
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-16 animate-fade-in-up animation-delay-200">
