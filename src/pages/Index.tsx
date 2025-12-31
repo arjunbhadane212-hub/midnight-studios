@@ -1,67 +1,30 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import AmbientBackground from '@/components/AmbientBackground';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import StealthCard from '@/components/StealthCard';
-import ProjectCard from '@/components/ProjectCard';
-import TeamMemberModal from '@/components/TeamMemberModal';
-import InfiniteReviewCarousel from '@/components/InfiniteReviewCarousel';
 import { Button } from '@/components/ui/button';
-import { Code, Box, Palette, Users } from 'lucide-react';
+import { Code, Box, Palette, HelpCircle, ChevronDown } from 'lucide-react';
 
-// Project images
-import scriptingProject1 from '@/assets/project-scripting-1.jpg';
-import scriptingProject2 from '@/assets/project-scripting-2.jpg';
-import modelingProject1 from '@/assets/project-modeling-1.jpg';
-import modelingProject2 from '@/assets/project-modeling-2.jpg';
-import uiProject1 from '@/assets/project-ui-1.jpg';
-import uiProject2 from '@/assets/project-ui-2.jpg';
-
-const teamMembers = [
+const faqItems = [
   {
-    role: 'Lead Developer',
-    name: 'Alex Chen',
-    bio: 'With over 5 years of experience in Roblox development, Alex leads our scripting team with a focus on performance-optimized code and scalable game systems. Specializing in complex gameplay mechanics and server-side architecture.',
-    contributions: [
-      'Architected core gameplay systems for 15+ major projects',
-      'Developed custom networking solutions reducing latency by 40%',
-      'Created reusable module library used across all projects',
-      'Mentored junior developers and established coding standards',
-    ],
+    question: 'What types of projects do you work on?',
+    answer: 'We specialize in Roblox game development, including scripting, 3D modeling, UI/UX design, and full-cycle game production.',
   },
   {
-    role: 'Lead Modeler',
-    name: 'Jordan Rivera',
-    bio: 'Jordan brings environments and characters to life with stunning 3D artistry. Expert in low-poly optimization without sacrificing visual quality, ensuring games run smoothly across all devices.',
-    contributions: [
-      'Designed and modeled 200+ unique game assets',
-      'Established art pipeline reducing production time by 30%',
-      'Created character rigs and animations for multiple games',
-      'Developed LOD systems for optimal performance',
-    ],
+    question: 'How long does a typical project take?',
+    answer: 'Project timelines vary based on scope. Simple projects may take 1-2 weeks, while complex games can take several months.',
   },
   {
-    role: 'UI Specialist',
-    name: 'Sam Taylor',
-    bio: 'Sam crafts intuitive and visually stunning user interfaces that enhance player experience. Focused on accessibility, responsiveness, and creating memorable first impressions.',
-    contributions: [
-      'Designed UI systems for 20+ Roblox experiences',
-      'Implemented custom animation frameworks for fluid interactions',
-      'Created accessible design guidelines for all projects',
-      'Developed responsive layouts for all device types',
-    ],
+    question: 'Do you offer ongoing support?',
+    answer: 'Yes, we provide post-launch support and maintenance services to ensure your game runs smoothly.',
+  },
+  {
+    question: 'How do I get started?',
+    answer: 'Join our Discord server and describe your project. Our team will review your requirements and get back to you promptly.',
   },
 ];
 
 const Index = () => {
-  const [selectedMember, setSelectedMember] = useState<typeof teamMembers[0] | null>(null);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
       <AmbientBackground />
@@ -69,12 +32,12 @@ const Index = () => {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 stealth-nav">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <span className="text-xl font-bold text-foreground">[Group Name]</span>
+          <Link to="/" className="text-xl font-bold text-foreground">[Group Name]</Link>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#home" className="text-muted-foreground hover:text-foreground transition-colors">Home</a>
-            <a href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">Projects</a>
-            <a href="#team" className="text-muted-foreground hover:text-foreground transition-colors">Team</a>
-            <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+            <Link to="/" className="text-foreground transition-colors">Home</Link>
+            <Link to="/projects" className="text-muted-foreground hover:text-foreground transition-colors">Projects</Link>
+            <Link to="/projects#team" className="text-muted-foreground hover:text-foreground transition-colors">Team</Link>
+            <Link to="/projects#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
           </div>
         </div>
       </nav>
@@ -85,37 +48,9 @@ const Index = () => {
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 animate-fade-in-up">
             [Group Name Placeholder]
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in-up animation-delay-200">
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-16 animate-fade-in-up animation-delay-200">
             Execution-focused game development group specializing in Roblox experiences.
           </p>
-          
-          {/* Quick Nav Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16 animate-fade-in-up animation-delay-400">
-            <Button
-              variant="stealth"
-              size="lg"
-              onClick={() => scrollToSection('ui-section')}
-            >
-              <Palette className="w-4 h-4 mr-2" />
-              UI Design
-            </Button>
-            <Button
-              variant="stealth"
-              size="lg"
-              onClick={() => scrollToSection('scripting-section')}
-            >
-              <Code className="w-4 h-4 mr-2" />
-              Scripting
-            </Button>
-            <Button
-              variant="stealth"
-              size="lg"
-              onClick={() => scrollToSection('building-section')}
-            >
-              <Box className="w-4 h-4 mr-2" />
-              Building
-            </Button>
-          </div>
           
           {/* Stats Bar */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
@@ -185,113 +120,47 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="relative z-10 py-24">
+      {/* FAQ Section */}
+      <section id="faq" className="relative z-10 py-24">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-4">
-            Our Projects
+            Frequently Asked Questions
           </h2>
           <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
-            Explore our portfolio of Roblox experiences across scripting, modeling, and UI design.
+            Got questions? We've got answers.
           </p>
 
-          {/* UI Design */}
-          <div id="ui-design" className="mb-16 scroll-mt-24">
-            <div className="flex items-center gap-3 mb-8">
-              <Palette className="w-6 h-6 text-primary" />
-              <h3 className="text-2xl font-semibold text-foreground">UI Design</h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ProjectCard title="Project Alpha" image={uiProject1} category="UI Design" />
-              <ProjectCard title="Project Beta" image={uiProject2} category="UI Design" />
-            </div>
-          </div>
-
-          {/* Scripting */}
-          <div id="scripting" className="mb-16 scroll-mt-24">
-            <div className="flex items-center gap-3 mb-8">
-              <Code className="w-6 h-6 text-primary" />
-              <h3 className="text-2xl font-semibold text-foreground">Scripting</h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ProjectCard title="Project Alpha" image={scriptingProject1} category="Scripting" />
-              <ProjectCard title="Project Beta" image={scriptingProject2} category="Scripting" />
-            </div>
-          </div>
-
-          {/* Building */}
-          <div id="building" className="mb-16 scroll-mt-24">
-            <div className="flex items-center gap-3 mb-8">
-              <Box className="w-6 h-6 text-primary" />
-              <h3 className="text-2xl font-semibold text-foreground">Building</h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ProjectCard title="Project Alpha" image={modelingProject1} category="Building" />
-              <ProjectCard title="Project Beta" image={modelingProject2} category="Building" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Reviews Section */}
-      <section className="relative z-10 py-24">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-4">
-            What Clients Say
-          </h2>
-          <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            Trusted by game developers and studios worldwide.
-          </p>
-        </div>
-        <InfiniteReviewCarousel />
-      </section>
-
-      {/* Team Section */}
-      <section id="team" className="relative z-10 py-24">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-4">
-            Meet the Team
-          </h2>
-          <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
-            Click on a role to learn more about our talented team members.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {teamMembers.map((member) => (
-              <Button
-                key={member.role}
-                variant="stealth"
-                size="xl"
-                className="h-auto py-8 flex-col gap-4"
-                onClick={() => setSelectedMember(member)}
-              >
-                <Users className="w-8 h-8 text-primary" />
-                <span className="text-lg font-semibold">{member.role}</span>
-              </Button>
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqItems.map((item, index) => (
+              <StealthCard key={index} className="p-6">
+                <div className="flex items-start gap-4">
+                  <HelpCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">{item.question}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.answer}</p>
+                  </div>
+                </div>
+              </StealthCard>
             ))}
           </div>
         </div>
       </section>
 
-      <TeamMemberModal
-        member={selectedMember}
-        open={!!selectedMember}
-        onClose={() => setSelectedMember(null)}
-      />
-
-      {/* Contact Section */}
-      <section id="contact" className="relative z-10 py-24">
+      {/* CTA Section */}
+      <section className="relative z-10 py-24">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Get in Touch
+            Ready to Start?
           </h2>
           <p className="text-muted-foreground mb-12 max-w-xl mx-auto">
-            Ready to bring your Roblox vision to life? Join our community and let's create something amazing together.
+            Explore our portfolio and see what we can build together.
           </p>
           
-          <Button variant="stealth" size="xl" className="text-lg">
-            Join our Discord
-          </Button>
+          <Link to="/projects">
+            <Button variant="stealth" size="xl" className="text-lg">
+              View Our Projects
+            </Button>
+          </Link>
         </div>
       </section>
 
@@ -303,9 +172,9 @@ const Index = () => {
               © 2024 [Group Name]. All rights reserved.
             </span>
             <div className="flex items-center gap-8">
-              <a href="#home" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Home</a>
-              <a href="#projects" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Projects</a>
-              <a href="#team" className="text-muted-foreground hover:text-foreground transition-colors text-sm">About</a>
+              <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Home</Link>
+              <Link to="/projects" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Projects</Link>
+              <Link to="/projects#team" className="text-muted-foreground hover:text-foreground transition-colors text-sm">About</Link>
             </div>
           </div>
         </div>
