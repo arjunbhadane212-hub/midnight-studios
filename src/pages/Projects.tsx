@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AmbientBackground from '@/components/AmbientBackground';
-import StealthCard from '@/components/StealthCard';
 import ProjectCard from '@/components/ProjectCard';
 import TeamMemberModal from '@/components/TeamMemberModal';
 import InfiniteReviewCarousel from '@/components/InfiniteReviewCarousel';
 import { Button } from '@/components/ui/button';
 import { Code, Box, Palette, Users } from 'lucide-react';
+
+type CategoryFilter = 'all' | 'scripting' | 'building' | 'ui';
 
 // Project images
 import scriptingProject1 from '@/assets/project-scripting-1.jpg';
@@ -54,6 +55,13 @@ const teamMembers = [
 
 const Projects = () => {
   const [selectedMember, setSelectedMember] = useState<typeof teamMembers[0] | null>(null);
+  const [activeFilter, setActiveFilter] = useState<CategoryFilter>('all');
+
+  const filterButtons: { key: CategoryFilter; label: string; icon: React.ReactNode }[] = [
+    { key: 'ui', label: 'UI Design', icon: <Palette className="w-5 h-5" /> },
+    { key: 'scripting', label: 'Scripting', icon: <Code className="w-5 h-5" /> },
+    { key: 'building', label: 'Building', icon: <Box className="w-5 h-5" /> },
+  ];
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
@@ -78,45 +86,67 @@ const Projects = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-4">
             Our Projects
           </h1>
-          <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
             Explore our portfolio of Roblox experiences across scripting, modeling, and UI design.
           </p>
 
-          {/* UI Design */}
-          <div id="ui-design" className="mb-16 scroll-mt-24">
-            <div className="flex items-center gap-3 mb-8">
-              <Palette className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-semibold text-foreground">UI Design</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ProjectCard title="Project Alpha" image={uiProject1} category="UI Design" />
-              <ProjectCard title="Project Beta" image={uiProject2} category="UI Design" />
-            </div>
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            {filterButtons.map(({ key, label, icon }) => (
+              <Button
+                key={key}
+                variant="stealth"
+                size="lg"
+                className={`gap-2 ${activeFilter === key ? 'border-primary text-primary' : ''}`}
+                onClick={() => setActiveFilter(activeFilter === key ? 'all' : key)}
+              >
+                {icon}
+                {label}
+              </Button>
+            ))}
           </div>
+
+          {/* UI Design */}
+          {(activeFilter === 'all' || activeFilter === 'ui') && (
+            <div id="ui-design" className="mb-16 scroll-mt-24">
+              <div className="flex items-center gap-3 mb-8">
+                <Palette className="w-6 h-6 text-primary" />
+                <h2 className="text-2xl font-semibold text-foreground">UI Design</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <ProjectCard title="Project Alpha" image={uiProject1} category="UI Design" />
+                <ProjectCard title="Project Beta" image={uiProject2} category="UI Design" />
+              </div>
+            </div>
+          )}
 
           {/* Scripting */}
-          <div id="scripting" className="mb-16 scroll-mt-24">
-            <div className="flex items-center gap-3 mb-8">
-              <Code className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-semibold text-foreground">Scripting</h2>
+          {(activeFilter === 'all' || activeFilter === 'scripting') && (
+            <div id="scripting" className="mb-16 scroll-mt-24">
+              <div className="flex items-center gap-3 mb-8">
+                <Code className="w-6 h-6 text-primary" />
+                <h2 className="text-2xl font-semibold text-foreground">Scripting</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <ProjectCard title="Project Alpha" image={scriptingProject1} category="Scripting" />
+                <ProjectCard title="Project Beta" image={scriptingProject2} category="Scripting" />
+              </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ProjectCard title="Project Alpha" image={scriptingProject1} category="Scripting" />
-              <ProjectCard title="Project Beta" image={scriptingProject2} category="Scripting" />
-            </div>
-          </div>
+          )}
 
           {/* Building */}
-          <div id="building" className="mb-16 scroll-mt-24">
-            <div className="flex items-center gap-3 mb-8">
-              <Box className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-semibold text-foreground">Building</h2>
+          {(activeFilter === 'all' || activeFilter === 'building') && (
+            <div id="building" className="mb-16 scroll-mt-24">
+              <div className="flex items-center gap-3 mb-8">
+                <Box className="w-6 h-6 text-primary" />
+                <h2 className="text-2xl font-semibold text-foreground">Building</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <ProjectCard title="Project Alpha" image={modelingProject1} category="Building" />
+                <ProjectCard title="Project Beta" image={modelingProject2} category="Building" />
+              </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ProjectCard title="Project Alpha" image={modelingProject1} category="Building" />
-              <ProjectCard title="Project Beta" image={modelingProject2} category="Building" />
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
