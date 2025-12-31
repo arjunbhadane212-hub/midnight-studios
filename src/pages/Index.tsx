@@ -32,11 +32,11 @@ const Index = () => {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 stealth-nav">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="text-xl font-bold text-foreground">[Group Name]</Link>
+          <Link to="/" className="text-xl font-bold text-foreground">Rogue Origins</Link>
           <div className="hidden md:flex items-center gap-8">
             <Link to="/" className="text-foreground transition-colors">Home</Link>
             <Link to="/projects" className="text-muted-foreground hover:text-foreground transition-colors">Projects</Link>
-            <Link to="/projects#team" className="text-muted-foreground hover:text-foreground transition-colors">Team</Link>
+            <Link to="/team" className="text-muted-foreground hover:text-foreground transition-colors">Team</Link>
             <Link to="/projects#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
           </div>
         </div>
@@ -46,7 +46,7 @@ const Index = () => {
       <section id="home" className="relative z-10 min-h-screen flex items-center justify-center pt-20">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 animate-fade-in-up">
-            [Group Name Placeholder]
+            Rogue Origins
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-16 animate-fade-in-up animation-delay-200">
             Execution-focused game development group specializing in Roblox experiences.
@@ -169,12 +169,12 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <span className="text-muted-foreground text-sm">
-              © 2024 [Group Name]. All rights reserved.
+              © 2024 Rogue Origins. All rights reserved.
             </span>
             <div className="flex items-center gap-8">
               <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Home</Link>
               <Link to="/projects" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Projects</Link>
-              <Link to="/projects#team" className="text-muted-foreground hover:text-foreground transition-colors text-sm">About</Link>
+              <Link to="/team" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Team</Link>
             </div>
           </div>
         </div>
