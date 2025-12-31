@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import AmbientBackground from '@/components/AmbientBackground';
 import ProjectCard from '@/components/ProjectCard';
 import InfiniteReviewCarousel from '@/components/InfiniteReviewCarousel';
@@ -18,6 +18,14 @@ import uiProject2 from '@/assets/project-ui-2.jpg';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>('all');
+  const location = useLocation();
+
+  // Scroll to top when navigating to this page without a hash anchor
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [location]);
 
   const filterButtons: { key: CategoryFilter; label: string; icon: React.ReactNode }[] = [
     { key: 'ui', label: 'UI Design', icon: <Palette className="w-5 h-5" /> },
