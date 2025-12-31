@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AmbientBackground from '@/components/AmbientBackground';
 import ProjectCard from '@/components/ProjectCard';
-import TeamMemberModal from '@/components/TeamMemberModal';
 import InfiniteReviewCarousel from '@/components/InfiniteReviewCarousel';
 import { Button } from '@/components/ui/button';
-import { Code, Box, Palette, Users } from 'lucide-react';
+import { Code, Box, Palette } from 'lucide-react';
 
 type CategoryFilter = 'all' | 'scripting' | 'building' | 'ui';
 
@@ -17,44 +16,7 @@ import modelingProject2 from '@/assets/project-modeling-2.jpg';
 import uiProject1 from '@/assets/project-ui-1.jpg';
 import uiProject2 from '@/assets/project-ui-2.jpg';
 
-const teamMembers = [
-  {
-    role: 'Lead Developer',
-    name: 'Alex Chen',
-    bio: 'With over 5 years of experience in Roblox development, Alex leads our scripting team with a focus on performance-optimized code and scalable game systems. Specializing in complex gameplay mechanics and server-side architecture.',
-    contributions: [
-      'Architected core gameplay systems for 15+ major projects',
-      'Developed custom networking solutions reducing latency by 40%',
-      'Created reusable module library used across all projects',
-      'Mentored junior developers and established coding standards',
-    ],
-  },
-  {
-    role: 'Lead Modeler',
-    name: 'Jordan Rivera',
-    bio: 'Jordan brings environments and characters to life with stunning 3D artistry. Expert in low-poly optimization without sacrificing visual quality, ensuring games run smoothly across all devices.',
-    contributions: [
-      'Designed and modeled 200+ unique game assets',
-      'Established art pipeline reducing production time by 30%',
-      'Created character rigs and animations for multiple games',
-      'Developed LOD systems for optimal performance',
-    ],
-  },
-  {
-    role: 'UI Specialist',
-    name: 'Sam Taylor',
-    bio: 'Sam crafts intuitive and visually stunning user interfaces that enhance player experience. Focused on accessibility, responsiveness, and creating memorable first impressions.',
-    contributions: [
-      'Designed UI systems for 20+ Roblox experiences',
-      'Implemented custom animation frameworks for fluid interactions',
-      'Created accessible design guidelines for all projects',
-      'Developed responsive layouts for all device types',
-    ],
-  },
-];
-
 const Projects = () => {
-  const [selectedMember, setSelectedMember] = useState<typeof teamMembers[0] | null>(null);
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>('all');
 
   const filterButtons: { key: CategoryFilter; label: string; icon: React.ReactNode }[] = [
@@ -70,11 +32,11 @@ const Projects = () => {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 stealth-nav">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="text-xl font-bold text-foreground">[Group Name]</Link>
+          <Link to="/" className="text-xl font-bold text-foreground">Rogue Origins</Link>
           <div className="hidden md:flex items-center gap-8">
             <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
             <Link to="/projects" className="text-foreground transition-colors">Projects</Link>
-            <a href="#team" className="text-muted-foreground hover:text-foreground transition-colors">Team</a>
+            <Link to="/team" className="text-muted-foreground hover:text-foreground transition-colors">Team</Link>
             <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
           </div>
         </div>
@@ -163,39 +125,6 @@ const Projects = () => {
         <InfiniteReviewCarousel />
       </section>
 
-      {/* Team Section */}
-      <section id="team" className="relative z-10 py-24">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-4">
-            Meet the Team
-          </h2>
-          <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
-            Click on a role to learn more about our talented team members.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {teamMembers.map((member) => (
-              <Button
-                key={member.role}
-                variant="stealth"
-                size="xl"
-                className="h-auto py-8 flex-col gap-4"
-                onClick={() => setSelectedMember(member)}
-              >
-                <Users className="w-8 h-8 text-primary" />
-                <span className="text-lg font-semibold">{member.role}</span>
-              </Button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <TeamMemberModal
-        member={selectedMember}
-        open={!!selectedMember}
-        onClose={() => setSelectedMember(null)}
-      />
-
       {/* Contact Section */}
       <section id="contact" className="relative z-10 py-24">
         <div className="container mx-auto px-6 text-center">
@@ -217,12 +146,12 @@ const Projects = () => {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <span className="text-muted-foreground text-sm">
-              © 2024 [Group Name]. All rights reserved.
+              © 2024 Rogue Origins. All rights reserved.
             </span>
             <div className="flex items-center gap-8">
               <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Home</Link>
               <Link to="/projects" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Projects</Link>
-              <a href="#team" className="text-muted-foreground hover:text-foreground transition-colors text-sm">About</a>
+              <Link to="/team" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Team</Link>
             </div>
           </div>
         </div>
