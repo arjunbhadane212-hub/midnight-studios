@@ -11,20 +11,31 @@
     <meta property="og:title" content="Global Productions | Premium Web Development" />
     <meta property="og:description" content="Execution-focused production house delivering polished, scalable digital projects." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content="og-image.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Global Productions" />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:image" content="og-image.png" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   </head>
 
   <body style="background-color: #000814; margin: 0; padding: 0;">
     <div id="root"></div>
+    <script>
+      // If we arrived here via public/404.html redirect, restore the original path.
+      // Converts /repo/?/projects -> /repo/projects
+      (function () {
+        var l = window.location;
+        if (l.search && l.search.startsWith("?/")) {
+          var restored = l.pathname.replace(/\/$/, "") + l.search.slice(1);
+          l.replace(restored + l.hash);
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
